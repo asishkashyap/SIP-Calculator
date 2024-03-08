@@ -22,9 +22,6 @@ FROM nginx:alpine
 # Copy the built app from the first stage
 COPY --from=build-stage /app/build /usr/share/nginx/html
 
-# Copy the nginx configuration file
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
 # Make port 80 available to the world outside this container
 EXPOSE 80
 
