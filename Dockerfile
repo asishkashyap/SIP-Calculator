@@ -16,9 +16,6 @@ COPY ./src .
 # Build the React app
 RUN npm run build
 
-# Copy the start.sh file to the image
-COPY start.sh /start.sh
-
 # Stage 2: Create a minimal production-ready image
 FROM node:14
 
