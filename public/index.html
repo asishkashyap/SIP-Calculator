@@ -4,76 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIP Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.0.css">
     <style>
         body {
+            background-image: url('https://images.unsplash.com/photo-1504384764721-7a4e488e194e');
+            background-size: cover;
+            background-position: center;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
         }
         .container {
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 600px;
+            margin: 50px auto;
             padding: 20px;
-            background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
         }
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
         }
-        button {
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .btn {
             background-color: #4CAF50;
             color: white;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
-            width: 100%;
+            text-align: center;
+            font-size: 16px;
         }
-        button:hover {
+        .btn:hover {
             background-color: #45a049;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>SIP Calculator</h1>
+        <img src="https://www.example.com/logo.png" alt="Logo" class="logo">
+        <h1 class="text-center">SIP Calculator</h1>
         <form>
-            <label for="principal">Principal:</label>
-            <input type="number" id="principal" name="principal" required>
-            <label for="rate">Rate (%):</label>
-            <input type="number" id="rate" name="rate" required>
-            <label for="time">Time (years):</label>
-            <input type="number" id="time" name="time" required>
-            <button type="submit">Calculate</button>
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" class="form-control" placeholder="Enter amount">
+            </div>
+            <div class="form-group">
+                <label for="rate">Rate:</label>
+                <input type="number" id="rate" class="form-control" placeholder="Enter rate">
+            </div>
+            <div class="form-group">
+                <label for="tenure">Tenure:</label>
+                <input type="number" id="tenure" class="form-control" placeholder="Enter tenure">
+            </div>
+            <button type="submit" class="btn">Calculate</button>
         </form>
-        <div id="result"></div>
     </div>
-    <script>
-        const form = document.querySelector('form');
-        const principalInput = document.getElementById('principal');
-        const rateInput = document.getElementById('rate');
-        const timeInput = document.getElementById('time');
-        const resultDiv = document.getElementById('result');
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const principal = parseFloat(principalInput.value);
-            const rate = parseFloat(rateInput.value) / 100;
-            const time = parseFloat(timeInput.value);
-            const result = calculateSIP(principal, rate, time);
-            resultDiv.textContent = `SIP Amount: ${result.toFixed(2)}`;
-        });
-
-        function calculateSIP(principal, rate, time) {
-            let amount = principal;
-            for (let i = 0; i < time; i++) {
-                amount += amount * rate;
-            }
-            return amount;
-        }
-    </script>
 </body>
 </html>
