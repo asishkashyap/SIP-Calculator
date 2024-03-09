@@ -16,11 +16,26 @@ COPY ./src .
 # Build the React app
 RUN npm run build
 
+# Copy the start.sh file to the image
+COPY start.sh /start.sh
+
 # Stage 2: Create a minimal production-ready image
-FROM nginx:alpine
+FROM node:14
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the start.sh file to the image
+COPY start.sh /start.sh
 
 # Copy the built app from the 'build' stage
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/build /app/build
 
-# Expose port 80
-EXPOSE 80
+# Install the production dependencies
+RUN npm install --only=production
+
+# Make the start.sh file executable
+RUN chmod +x /start.sh
+
+# Set the entrypoint to the start.sh file
+ENTRYPOINT ["/start.sh"]
