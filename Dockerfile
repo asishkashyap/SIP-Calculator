@@ -13,6 +13,9 @@ RUN npm install
 # Copy the remaining application code
 COPY . .
 
+# Copy the public directory to the image
+COPY public /app/public
+
 # Build the React app
 RUN npm run build
 
