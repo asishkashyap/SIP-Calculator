@@ -17,22 +17,10 @@ COPY ./src .
 RUN npm run build
 
 # Stage 2: Create a minimal production-ready image
-FROM node:14
-
-# Set the working directory
-WORKDIR /app
-
-# Copy the start.sh file to the image
-COPY start.sh /start.sh
+FROM nginx:alpine
 
 # Copy the built app from the 'build' stage
-COPY --from=build /app/build /app/build
+COPY --from=build /app/build /usr/share/nginx/html
 
-# Install the production dependencies
-RUN npm install --only=production
-
-# Make the start.sh file executable
-RUN chmod +x /start.sh
-
-# Set the entrypoint to the start.sh file
-ENTRYPOINT ["/start.sh"]
+# Expose port 80
+EXPOSE 80
