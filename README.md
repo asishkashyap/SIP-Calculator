@@ -30,3 +30,7 @@ To build the Docker image, use the following commands:
 
 ```bash
 docker build -t mutual-fund-sip-calculator .
+
+## To run this image, run below command:
+
+docker run -d -p 3000:3000 sip_calculator
